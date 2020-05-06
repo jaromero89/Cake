@@ -1,0 +1,27 @@
+{
+    "name": "cake",
+    "version": "1.0.0",
+    "description": "Cake is web based application, providing the user with their own personal database. The database will store data that is important and personal to the user.  ",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jaromero89/Cake.git"
+    },
+    "author": "James Lloyd Romero III",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jaromero89/Cake/issues"
+    },
+    "homepage": "https://github.com/jaromero89/Cake#readme",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "express": "^4.17.1",
+        "hbs": "^4.1.1",
+        "jquery": "^3.5.1",
+        "mysql": "^2.18.1"
+    }
+}

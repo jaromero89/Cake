@@ -1,0 +1,230 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cake</title>
+  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Cake</h1>
+    <h2>Friends and Family</h2>
+        <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add New</button>
+    <table class="table table-striped" id="mytable">
+      <thead>
+        <tr>
+          <th>Fam ID</th>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Street Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Relationship</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+         {{#each results}}
+        <tr>
+          <td>{{ family_id }}</td>
+          <td>{{ family_name }}</td>
+          <td>{{ family_DOB }}</td>
+          <td>{{ family_address }}</td>
+          <td>{{ family_city }}</td>
+          <td>{{ family_state}}</td>
+          <td>{{ family_phonenumber }}</td>
+          <td>{{ family_email }}</td>
+          <td>{{ family_gender }}</td>
+          <td>{{ family_relation }}</td>
+          <td>
+            <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-family_id="{{ family_id }}"
+             data-family_name="{{ family_name }}" data-family_DOB="{{ family_DOB }}" 
+             data-family_addess="{{ family_address }}" data-family_city="{{ family_city }}"
+             data-family_state="{{ family_state }}" data-family_phonenumber="{{ family_phonenumber }}"
+             data-family_email="{{ family_email }}" data-family_gender="{{ family_gender }}"
+             data-family_relation="{{ family_relation }}">Edit</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ family_id }}">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+ 
+    <!-- Modal Add Member-->
+      <form action="/save" method="post">
+    <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add to the family</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <input type="text" name="family_name" class="form-control" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="family_DOB" class="form-control" placeholder="Date of Birth" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="family_address" class="form-control" placeholder="Street Address" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="family_city" class="form-control" placeholder="City" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="family_state" class="form-control" placeholder="State" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="family_phonenumber" class="form-control" placeholder="Phone Number" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="family_email" class="form-control" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="family_gender" class="form-control" placeholder="Gender" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" name="family_relation" class="form-control" placeholder="Relationship" required>
+            </div>
+            
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save</button>
+             </div>
+           </div>
+         </div>
+        </div>
+     </form>
+ 
+     <!-- Modal Update Member-->
+   <form action="/update" method="post">
+       <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Person</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <input type="text" name="family_name" class="form-control family_name" placeholder="Name" required>
+              </div>
+ 
+              <div class="form-group">
+                  <input type="text" name="family_DOB" class="form-control family_DOB" placeholder="Date of Birth" required>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="family_address" class="form-control family_address" placeholder="Street Address" required>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="family_city" class="form-control family_city" placeholder="City" required>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="family_state" class="form-control family_state" placeholder="State" required>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="family_phonenumber" class="form-control family_phonenumber" placeholder="Phone Number" required>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="family_email" class="form-control family_email" placeholder="Email" required>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="family_gender" class="form-control family_gender" placeholder="Gender" required>
+              </div>
+ 
+              <div class="form-group">
+                  <input type="text" name="family_relation" class="form-control family_relation" placeholder="Relationship" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="family_id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+  </form>
+ 
+     <!-- Modal Delete Family-->
+      <form id="add-row-form" action="/delete" method="post">
+         <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Delete</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   </div>
+                   <div class="modal-body">
+                                                 <strong>Are you sure to delete this data?</strong>
+                   </div>
+                   <div class="modal-footer">
+                                            <input type="hidden" name="family_id" class="form-control product_id2" required>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Delete</button>
+                   </div>
+                    </div>
+            </div>
+         </div>
+     </form>
+ 
+<script src="/assets/js/jquery-3.3.1.min.js"></script> 
+<script src="/assets/js/bootstrap.js"></script>
+<script>
+    $(document).ready(function() {
+            //showing data to edit modal      
+       $('#mytable').on('click','.edit',function(){      
+        var family_id = $(this).data('id');
+        var family_name = $(this).data('family_name');
+        var family_DOB = $(this).data('family_DOB');
+        var family_address = $(this).data('family_address');
+        var family_city = $(this).data('family_city');
+        var family_state = $(this).data('family_state');
+        var family_phonenumber = $(this).data('family_phonenumber');
+        var family_email = $(this).data('family_email');
+        var family_gender = $(this).data('family_gender');
+        var family_relation = $(this).data('family_relation');
+        $('#EditModal').modal('show');
+        $('.family_name').val(family_name);
+        $('.family_DOB').val(family_DOB);
+        $('.family_address').val(family_address);
+        $('.family_city').val(family_city);
+        $('.family_state').val(family_state);
+        $('.family_phonenumber').val(family_phonenumber);
+        $('.family_email').val(family_email);
+        $('.family_gender').val(family_gender);
+        $('.family_relation').val(family_relation);
+        $('.family_id').val(family_id);
+      });
+            //showing delete record modal
+        $('#mytable').on('click','.delete', function (){
+        var family_id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.family_id2').val(family_id);
+      });
+ 
+    });
+</script>
+</body>
+</html>
