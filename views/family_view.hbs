@@ -39,7 +39,7 @@
           <td>{{ family_gender }}</td>
           <td>{{ family_relation }}</td>
           <td>
-            <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-family_id="{{ family_id }}"
+            <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ family_id }}"
              data-family_name="{{ family_name }}" data-family_DOB="{{ family_DOB }}" 
              data-family_addess="{{ family_address }}" data-family_city="{{ family_city }}"
              data-family_state="{{ family_state }}" data-family_phonenumber="{{ family_phonenumber }}"
@@ -167,20 +167,20 @@
        </div>
   </form>
  
-     <!-- Modal Delete Family-->
+ <!-- Modal Delete Product-->
       <form id="add-row-form" action="/delete" method="post">
          <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                <div class="modal-content">
                    <div class="modal-header">
-                                        <h5 class="modal-title" id="myModalLabel">Delete</h5>
+                                        <h5 class="modal-title" id="myModalLabel">Delete Person</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                    </div>
                    <div class="modal-body">
                                                  <strong>Are you sure to delete this data?</strong>
                    </div>
                    <div class="modal-footer">
-                                            <input type="hidden" name="family_id" class="form-control product_id2" required>
+                                            <input type="hidden" name="family_id" class="form-control family_id2" required>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Delete</button>
                    </div>
@@ -189,7 +189,7 @@
          </div>
      </form>
  
-<script src="/assets/js/jquery-3.3.1.min.js"></script> 
+<script src="/assets/js/jquery-3.3.1.js"></script> 
 <script src="/assets/js/bootstrap.js"></script>
 <script>
     $(document).ready(function() {
@@ -218,7 +218,7 @@
         $('.family_id').val(family_id);
       });
             //showing delete record modal
-        $('#mytable').on('click','.delete', function (){
+            $('#mytable').on('click','.delete', function (){
         var family_id = $(this).data('id');
         $('#DeleteModal').modal('show');
         $('.family_id2').val(family_id);

@@ -56,7 +56,7 @@ app.post('/save', (req, res) => {
 
 //route for update data
 app.post('/update', (req, res) => {
-    let sql = "UPDATE Family SET family_name='" + req.body.family_name + ", family_DOB='" + req.body.family_DOB + "', family_address='" + req.body.family_address + "', family_city='" + req.body.family_city + ", family_state='" + req.body.family_state + ", family_phonenumber='" + req.body.family_phonenumber + ", family_email='" + req.body.family_email + ", family_gender='" + req.body.family_gender + "', family_relation='" + req.body.family_relation + "' WHERE family_id=" + req.body.id;
+    let sql = "UPDATE Family SET family_name='" + req.body.family_name + "', family_DOB='" + req.body.family_DOB + "', family_address='" + req.body.family_address + "', family_city='" + req.body.family_city + "', family_state='" + req.body.family_state + "', family_phonenumber='" + req.body.family_phonenumber + "', family_email='" + req.body.family_email + "', family_gender='" + req.body.family_gender + "', family_relation='" + req.body.family_relation + "' WHERE family_id=" + req.body.id;
     let query = conn.query(sql, (err, results) => {
         if (err) throw err;
         res.redirect('/');
@@ -65,7 +65,7 @@ app.post('/update', (req, res) => {
 
 //route for delete data
 app.post('/delete', (req, res) => {
-    let sql = "DELETE FROM Family WHERE family_id=" + req.body._id + "";
+    let sql = "DELETE FROM Family WHERE family_id=" + req.body.family_id + "";
     let query = conn.query(sql, (err, results) => {
         if (err) throw err;
         res.redirect('/');
