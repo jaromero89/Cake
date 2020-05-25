@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cake</title>
+  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Cake</h1>
+    <h2>Friends and Acquaintances</h2>
+        <button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add New</button>
+    <table class="table table-striped" id="mytable">
+      <thead>
+        <tr>
+          <th>Fam ID</th>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Street Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Relationship</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+         {{#each results}}
+        <tr>
+          <td>{{ family_id }}</td>
+          <td>{{ family_name }}</td>
+          <td>{{ family_DOB }}</td>
+          <td>{{ family_address }}</td>
+          <td>{{ family_city }}</td>
+          <td>{{ family_state}}</td>
+          <td>{{ family_phonenumber }}</td>
+          <td>{{ family_email }}</td>
+          <td>{{ family_gender }}</td>
+          <td>{{ family_relation }}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+     </form>
+ 
+<script src="/assets/js/jquery-3.3.1.js"></script> 
+<script src="/assets/js/bootstrap.js"></script>
+<script>
+    $(document).ready(function() {
+            //showing data to edit modal      
+       $('#mytable').on('click','.edit',function(){      
+        var family_id = $(this).data('id');
+        var family_name = $(this).data('family_name');
+        var family_DOB = $(this).data('family_DOB');
+        var family_address = $(this).data('family_address');
+        var family_city = $(this).data('family_city');
+        var family_state = $(this).data('family_state');
+        var family_phonenumber = $(this).data('family_phonenumber');
+        var family_email = $(this).data('family_email');
+        var family_gender = $(this).data('family_gender');
+        var family_relation = $(this).data('family_relation');
+        $('#EditModal').modal('show');
+        $('.family_name').val(family_name);
+        $('.family_DOB').val(family_DOB);
+        $('.family_address').val(family_address);
+        $('.family_city').val(family_city);
+        $('.family_state').val(family_state);
+        $('.family_phonenumber').val(family_phonenumber);
+        $('.family_email').val(family_email);
+        $('.family_gender').val(family_gender);
+        $('.family_relation').val(family_relation);
+        $('.family_id').val(family_id);
+      });
+            //showing delete record modal
+            $('#mytable').on('click','.delete', function (){
+        var family_id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.family_id2').val(family_id);
+      });
+ 
+    });
+</script>
+</body>
+</html>

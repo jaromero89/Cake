@@ -70,6 +70,7 @@ Computer Science 408 Database class. The application written is for my final pro
 ## Acknowledgments
 
 * Citation: MAIN: http://mfikri.com/en/blog/nodejs-mysql-crud, 
+                  https://www.w3schools.com/w3css/tryw3css_templates_black.htm
                   https://stackoverflow.com/questions/39784003/error-connect-etimedout-while-connecting-to-host/39786132
                   https://codeforgeek.com/nodejs-mysql-tutorial/
                   https://medium.com/@austinhale/building-a-node-api-with-express-and-google-cloud-sql-9bda260b040f

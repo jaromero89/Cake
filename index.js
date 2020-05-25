@@ -18,6 +18,12 @@ const conn = mysql.createConnection({
     database: 'cake'
 });
 
+app.get('/', function(req, res) {
+    res.render('home', {
+        title: 'Home'
+    });
+});
+
 //connect to database
 conn.connect((err) => {
     if (err) throw err;
@@ -34,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/assets', express.static(__dirname + '/public'));
 
 //route for homepage
-app.get('/', (req, res) => {
+app.get('/family_view', (req, res) => {
     let sql = "SELECT * FROM Family";
     let query = conn.query(sql, (err, results) => {
         if (err) throw err;
@@ -43,6 +49,75 @@ app.get('/', (req, res) => {
         });
     });
 });
+
+//route for Nuclear Family 
+app.get('/nuclear_fam', (req, res) => {
+    let sql = "SELECT * FROM Family WHERE family_relation = 'Spouse' OR family_relation = 'Daughter' OR family_relation = 'Son'";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('nuclear_fam', {
+            results: results
+        });
+    });
+});
+
+//route for Intermediate Family 
+app.get('/im_fam', (req, res) => {
+    let sql = "SELECT * FROM Family WHERE family_relation = 'Mother' OR family_relation = 'Father' OR family_relation = 'Brother' OR family_relation = 'Sister' OR family_relation = 'Grandmother' OR family_relation = 'Grandfather'";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('im_fam', {
+            results: results
+        });
+    });
+});
+
+//route for Extended Family 
+app.get('/extended_fam', (req, res) => {
+    let sql = "SELECT * FROM Family WHERE family_relation = 'Uncle' OR family_relation = 'Aunt' OR family_relation = 'Cousin' OR family_relation = 'Godparent'";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('extended_fam', {
+            results: results
+        });
+    });
+});
+
+//route for Friend's Database
+app.get('/friend_view', (req, res) => {
+    let sql = "SELECT * FROM Family WHERE family_relation = 'Friend' OR family_relation = 'Acquaintance'";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('friend_view', {
+            results: results
+        });
+    });
+});
+
+//route for Search Tab
+app.get('/search_view', (req, res) => {
+    let sql = "SELECT * FROM Family WHERE family_name = ' ' OR family_DOB = ' ' OR family_address = ' ' OR family_city = ' ' OR family_state = ' ' OR family_phonenumber = ' '";
+    let query = conn.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('search_view', {
+            results: results
+        });
+    });
+});
+
+//route for Search Tab
+app.get('/search', function(req, res) {
+    connection.query('SELECT * from Family where family_name like "%' + req.query.key + '%"',
+        function(err, rows, fields) {
+            if (err) throw err;
+            var data = [];
+            for (i = 0; i < rows.length; i++) {
+                data.push(rows[i].family_name);
+            }
+            res.end(JSON.stringify(data));
+        });
+});
+
 
 //route for insert data
 app.post('/save', (req, res) => {
